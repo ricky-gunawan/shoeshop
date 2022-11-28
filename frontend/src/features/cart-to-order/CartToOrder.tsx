@@ -53,7 +53,7 @@ const CartToOrder = () => {
           </tbody>
         </table>
         <div className="flex justify-end">
-          <button onClick={handleCrateOrder} className="m-2 rounded-lg bg-green-700 p-2 text-sm font-semibold uppercase text-white hover:bg-green-800">
+          <button disabled={totalItems == 0} onClick={handleCrateOrder} className="m-2 rounded-lg bg-green-700 p-2 text-sm font-semibold uppercase text-white hover:bg-green-800 disabled:bg-slate-300 disabled:hover:bg-slate-300">
             place an order
           </button>
         </div>

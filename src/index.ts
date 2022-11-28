@@ -47,29 +47,25 @@ app.use("/api/auth", authRoutes);
 app.get("/api/products-display", getProductsDisplay);
 app.get("/api/products-display/:productId", getSingleProductDisplay);
 
-app.use(verifyJWT);
+app.get("/api/get-me", verifyJWT, getMe);
 
-app.get("/api/get-me", getMe);
-
-app.use("/cust-api", verifyRoles(roleList.customer));
 // Product Routes
-app.use("/cust-api/products", productRoutes);
+app.use("/cust-api/products", verifyJWT, verifyRoles(roleList.customer), productRoutes);
 // User Routes
-app.use("/cust-api/users", userRoutes);
+app.use("/cust-api/users", verifyJWT, verifyRoles(roleList.customer), userRoutes);
 // Cart Routes
-app.use("/cust-api/carts", cartRoutes);
+app.use("/cust-api/carts", verifyJWT, verifyRoles(roleList.customer), cartRoutes);
 // Order Routes
-app.use("/cust-api/orders", orderRoutes);
+app.use("/cust-api/orders", verifyJWT, verifyRoles(roleList.customer), orderRoutes);
 
-app.use("/adm-api", verifyRoles(roleList.admin));
 // Admin Product Routes
-app.use("/adm-api/products", adminProductRoutes);
+app.use("/adm-api/products", verifyJWT, verifyRoles(roleList.admin), adminProductRoutes);
 // Admin User Routes
-app.use("/adm-api/users", adminUserRoutes);
+app.use("/adm-api/users", verifyJWT, verifyRoles(roleList.admin), adminUserRoutes);
 // Admin Cart Routes
-app.use("/adm-api/carts", adminCartRoutes);
+app.use("/adm-api/carts", verifyJWT, verifyRoles(roleList.admin), adminCartRoutes);
 // Admin Order Routes
-app.use("/adm-api/orders", adminOrderRoutes);
+app.use("/adm-api/orders", verifyJWT, verifyRoles(roleList.admin), adminOrderRoutes);
 
 // Admin Upload Route { changing image hoting to cloudinary }
 // app.use("/adm-api/upload", adminUploadRoutes);
