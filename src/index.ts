@@ -70,10 +70,6 @@ app.use("/adm-api/orders", verifyJWT, verifyRoles(roleList.admin), adminOrderRou
 // Admin Upload Route { changing image hoting to cloudinary }
 // app.use("/adm-api/upload", adminUploadRoutes);
 
-////// static file
-// assets/image
-// app.use(express.static(path.join(path.resolve(), "assets")));
-
 // frontend
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(path.resolve(), "frontend/dist")));
