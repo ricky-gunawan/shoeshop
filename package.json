@@ -4,7 +4,8 @@
   "description": "backend app for online shop",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix frontend && npm run build --prefix frontend && tsc",
+    "build": "tsc",
+    "deploy": "npm run build --prefix frontend && git commit -am 'rebuild frontend' && git push",
     "watch": "tsc -w",
     "start": "node dist/index.js",
     "dev": "nodemon dist/index.js",
